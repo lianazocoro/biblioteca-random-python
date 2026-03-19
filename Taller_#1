@@ -8,10 +8,6 @@ from sympy import Matrix
 import random
 
 
-# ============================================
-#   FUNCIÓN PARA MOSTRAR SISTEMAS BONITO
-# ============================================
-
 def mostrar_sistema(nombre, ecuaciones):
     print(f"\n{nombre}")
     print("-" * len(nombre))
