@@ -1,107 +1,44 @@
-# ============================================
-#   TALLER 2 - DETERMINANTES
-#   Verificación en Python
-# ============================================
-
 import numpy as np
 import random
 
+class VerificadorTaller2Completo:
+    def __init__(self):
+        self.generar_random = lambda f, c: np.array([[random.randint(-5, 10) for _ in range(c)] for _ in range(f)])
 
+    def analizar(self, A, b, titulo):
+        print(f"\n=== {titulo} ===")
+        aumentada = np.column_stack((A, b))
+        rango_a = np.linalg.matrix_rank(A)
+        rango_aug = np.linalg.matrix_rank(aumentada)
+        
+        if rango_a == rango_aug:
+            if rango_a == A.shape[1]:
+                sol = np.linalg.solve(A, b)
+                print(f"SOLUCIÓN ÚNICA: x={sol[0]:.2f}, y={sol[1]:.2f}, z={sol[2]:.2f}")
+            else:
+                print("INFINITAS SOLUCIONES: El sistema depende de parámetros (t).")
+        else:
+            print("SISTEMA INCONSISTENTE: No tiene solución.")
 
-def mostrar_matriz(nombre, M):
-    print(f"\n{nombre}")
-    print("-" * len(nombre))
-    print(M)
-    print()
+    def ejecutar_todo(self):
+        # EJERCICIO #1
+        self.analizar(np.array([[2, 1, -1], [1, -1, 2], [3, 2, 1]]), np.array([3, 3, 10]), "EJERCICIO #1")
+        
+        # EJERCICIO #2
+        self.analizar(np.array([[1, 2, 1], [2, -1, 3], [3, 1, 2]]), np.array([7, 4, 10]), "EJERCICIO #2")
 
+        # EJERCICIO #3
+        self.analizar(np.array([[1, 1, 1], [2, 2, 2], [1, -1, 1]]), np.array([3, 6, 1]), "EJERCICIO #3")
+        
+        # EJERCICIO #4
+        self.analizar(np.array([[2, 1, -1], [4, 2, -2], [1, 1, 1]]), np.array([1, 2, 4]), "EJERCICIO #4")
 
-print("\n" + "="*45)
-print(" VERIFICACIÓN - DETERMINANTES ")
-print("="*45)
+        # EJERCICIO #5
+        self.analizar(np.array([[1, 1, 1], [2, 2, 2], [1, -1, 1]]), np.array([2, 5, 0]), "EJERCICIO #5")
+        
+        # EJERCICIO #6
+        self.analizar(np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]]), np.array([3, 6, 5]), "EJERCICIO #6")
 
-
-# ============================================
-#   EJERCICIO 1 (Método de Gauss)
-# ============================================
-
-A = np.array([
-    [2,  1, -1],
-    [4,  5, -3],
-    [2, -1,  2]
-])
-
-mostrar_matriz("Ejercicio 1 - Matriz A", A)
-
-det_A = np.linalg.det(A)
-
-print("Determinante calculado:")
-print(f"det(A) = {det_A:.2f}")
-
-print("Valor esperado (manual): 14\n")
-
-
-# ============================================
-#   EJERCICIO 2 (Forma triangular)
-# ============================================
-
-B = np.array([
-    [1, 2, 3],
-    [0, 4, 5],
-    [2, 1, 3]
-])
-
-mostrar_matriz("Ejercicio 2 - Matriz B", B)
-
-det_B = np.linalg.det(B)
-
-print("Determinante calculado:")
-print(f"det(B) = {det_B:.2f}")
-
-print("Valor esperado (manual): 3\n")
-
-
-# ============================================
-#   EJERCICIO 3 (Cofactores)
-# ============================================
-
-C = np.array([
-    [3,  0, 2],
-    [2, -1, 1],
-    [1,  4, 5]
-])
-
-mostrar_matriz("Ejercicio 3 - Matriz C", C)
-
-det_C = np.linalg.det(C)
-
-print("Determinante calculado:")
-print(f"det(C) = {det_C:.2f}")
-
-print("Valor esperado (manual): -9\n")
-
-
-# ============================================
-#   EJEMPLO ADICIONAL (valores aleatorios)
-# ============================================
-
-print("-"*45)
-print("Ejemplo adicional con matriz aleatoria")
-print("-"*45)
-
-M_random = np.array([[random.randint(1,5) for _ in range(3)] for _ in range(3)])
-
-mostrar_matriz("Matriz generada", M_random)
-
-det_random = np.linalg.det(M_random)
-
-print("Determinante de la matriz:")
-print(det_random)
-
-
-# ============================================
-#   FINAL
-# ============================================
-
-print("\n" + "="*45)
-print(" Verificación completada ")
-print("="*45)
+if __name__ == "__main__":
+    taller = VerificadorTaller2Completo()
+    taller.ejecutar_todo()
