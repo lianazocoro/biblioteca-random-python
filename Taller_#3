@@ -1,246 +1,65 @@
-# ============================================
-#   TALLER 3 - PROPIEDADES DE DETERMINANTES
-#   Verificación en Python
-# ============================================
-
 import numpy as np
 import random
 
-
-def mostrar(nombre, M):
-    print(f"\n{nombre}")
-    print("-" * len(nombre))
-    print(M)
-    print()
-
-
-print("\n" + "="*50)
-print(" VERIFICACIÓN - PROPIEDADES DE DETERMINANTES ")
-print("="*50)
-
-
-# ============================================
-#   PROPIEDAD 1
-# ============================================
-
-print("\nPropiedad 1: Intercambio de filas")
-
-A = np.array([[1,2,3],[4,5,6],[7,8,9]])
-A2 = np.array([[4,5,6],[1,2,3],[7,8,9]])
-
-mostrar("Matriz A", A)
-mostrar("Matriz A'", A2)
-
-print("det(A):", np.linalg.det(A))
-print("det(A'):", np.linalg.det(A2))
-
-
-B = np.array([[2,0,1],[3,1,4],[5,2,0]])
-B2 = np.array([[2,0,1],[5,2,0],[3,1,4]])
-
-mostrar("Matriz B", B)
-mostrar("Matriz B'", B2)
-
-print("det(B):", np.linalg.det(B))
-print("det(B'):", np.linalg.det(B2))
-
-
-# ============================================
-#   PROPIEDAD 2
-# ============================================
-
-print("\nPropiedad 2: Filas iguales")
-
-A = np.array([[1,2,3],[1,2,3],[4,5,6]])
-mostrar("Matriz A", A)
-print("det(A):", np.linalg.det(A))
-
-
-B = np.array([[2,1,0],[3,4,5],[3,4,5]])
-mostrar("Matriz B", B)
-print("det(B):", np.linalg.det(B))
-
-
-# ============================================
-#   PROPIEDAD 3
-# ============================================
-
-print("\nPropiedad 3: Multiplicar una fila")
-
-A = np.array([[1,2,1],[0,1,3],[2,0,1]])
-A2 = np.array([[3,6,3],[0,1,3],[2,0,1]])
-
-mostrar("Matriz A", A)
-mostrar("Matriz A'", A2)
-
-print("det(A):", np.linalg.det(A))
-print("det(A'):", np.linalg.det(A2))
-
-
-B = np.array([[2,1,0],[1,3,2],[4,0,1]])
-B2 = np.array([[2,1,0],[1,3,2],[8,0,2]])
-
-mostrar("Matriz B", B)
-mostrar("Matriz B'", B2)
-
-print("det(B):", np.linalg.det(B))
-print("det(B'):", np.linalg.det(B2))
-
-
-# ============================================
-#   PROPIEDAD 4
-# ============================================
-
-print("\nPropiedad 4: Sumar múltiplos de filas")
-
-A = np.array([[1,2,3],[2,1,0],[1,1,1]])
-A2 = np.array([[1,2,3],[4,5,6],[1,1,1]])
-
-mostrar("Matriz A", A)
-mostrar("Matriz A'", A2)
-
-print("det(A):", np.linalg.det(A))
-print("det(A'):", np.linalg.det(A2))
-
-
-B = np.array([[2,1,3],[1,0,2],[3,2,1]])
-B2 = np.array([[2,1,3],[1,0,2],[1,1,-2]])
-
-mostrar("Matriz B", B)
-mostrar("Matriz B'", B2)
-
-print("det(B):", np.linalg.det(B))
-print("det(B'):", np.linalg.det(B2))
-
-
-# ============================================
-#   PROPIEDAD 5
-# ============================================
-
-print("\nPropiedad 5: Matriz triangular")
-
-A = np.array([[2,1,3],[0,4,5],[0,0,6]])
-mostrar("Matriz A", A)
-print("det(A):", np.linalg.det(A))
-
-
-B = np.array([[1,2,3],[0,-2,4],[0,0,5]])
-mostrar("Matriz B", B)
-print("det(B):", np.linalg.det(B))
-
-
-# ============================================
-#   PROPIEDAD 6
-# ============================================
-
-print("\nPropiedad 6: Dependencia lineal")
-
-A = np.array([[1,2,3],[2,4,6],[3,1,0]])
-mostrar("Matriz A", A)
-print("det(A):", np.linalg.det(A))
-
-
-B = np.array([[2,1,3],[4,2,6],[1,0,1]])
-mostrar("Matriz B", B)
-print("det(B):", np.linalg.det(B))
-
-# ============================================
-#   PROPIEDAD 7
-# ============================================
-
-print("\nPropiedad 7: Matriz identidad")
-
-I = np.identity(3)
-mostrar("Matriz identidad", I)
-print("det(I):", np.linalg.det(I))
-
-
-I2 = np.identity(3)
-mostrar("Matriz identidad (otra vez)", I2)
-print("det(I):", np.linalg.det(I2))
-
-
-# ============================================
-#   PROPIEDAD 8
-# ============================================
-
-print("\nPropiedad 8: Determinante del producto")
-
-A = np.array([[1,2,0],[0,1,3],[2,1,1]])
-B = np.array([[2,0,1],[1,3,2],[0,1,1]])
-
-mostrar("Matriz A", A)
-mostrar("Matriz B", B)
-
-detA = np.linalg.det(A)
-detB = np.linalg.det(B)
-detAB = np.linalg.det(np.dot(A, B))
-
-print("det(A):", detA)
-print("det(B):", detB)
-print("det(A)*det(B):", detA * detB)
-print("det(AB):", detAB)
-
-
-A = np.array([[2,1,0],[1,0,3],[4,2,1]])
-B = np.array([[1,2,1],[0,1,0],[2,3,4]])
-
-mostrar("Matriz A (caso 2)", A)
-mostrar("Matriz B (caso 2)", B)
-
-detA = np.linalg.det(A)
-detB = np.linalg.det(B)
-detAB = np.linalg.det(np.dot(A, B))
-
-print("det(A):", detA)
-print("det(B):", detB)
-print("det(A)*det(B):", detA * detB)
-print("det(AB):", detAB)
-
-
-# ============================================
-#   PROPIEDAD 9
-# ============================================
-
-print("\nPropiedad 9: Determinante de la traspuesta")
-
-A = np.array([[1,2,3],[0,1,4],[2,0,1]])
-
-mostrar("Matriz A", A)
-mostrar("Matriz A^T", A.T)
-
-print("det(A):", np.linalg.det(A))
-print("det(A^T):", np.linalg.det(A.T))
-
-
-B = np.array([[3,1,2],[2,0,1],[1,4,3]])
-
-mostrar("Matriz B", B)
-mostrar("Matriz B^T", B.T)
-
-print("det(B):", np.linalg.det(B))
-print("det(B^T):", np.linalg.det(B.T))
-
-
-# ============================================
-#   EJEMPLO ADICIONAL
-# ============================================
-
-print("\n" + "-"*50)
-print("Ejemplo adicional con matriz aleatoria")
-print("-"*50)
-
-M = np.array([[random.randint(1,5) for _ in range(3)] for _ in range(3)])
-
-mostrar("Matriz generada", M)
-
-print("det(M):", np.linalg.det(M))
-
-
-# ============================================
-#   FINAL
-# ============================================
-
-print("\n" + "="*50)
-print(" Verificación completada ")
-print("="*50)
+class VerificadorTaller3:
+    def __init__(self):
+        self.random_val = lambda: random.randint(-10, 10)
+
+    def matriz_rotacion(self, angulo_grados):
+        rad = np.radians(angulo_grados)
+        return np.array([
+            [np.cos(rad), -np.sin(rad)],
+            [np.sin(rad),  np.cos(rad)]
+        ])
+
+    def verificar_simetria(self, matriz):
+        es_simetrica = np.allclose(matriz, matriz.T)
+        print(f"Matriz:\n{matriz}")
+        print(f"¿Es simétrica?: {es_simetrica}")
+
+    def verificar_antisimetria(self, matriz):
+        # Una matriz es antisimétrica si A^T = -A
+        es_antisimetrica = np.allclose(matriz.T, -matriz)
+        print(f"Matriz:\n{matriz}")
+        print(f"¿Es antisimétrica?: {es_antisimetrica}")
+
+    def ejecutar_ejercicios(self):
+        # --- MATRICES ROTACIONALES ---
+        print("=== MATRICES ROTACIONALES ===")
+        # Ejercicio 1: Ángulo 90° aplicado a vector [3, 4]
+        R90 = self.matriz_rotacion(90)
+        v = np.array([3, 4])
+        print(f"Rotación 90° aplicada a [3, 4]: {np.dot(R90, v)}")
+
+        # Ejercicio 2: Ángulo -30°
+        R30_neg = self.matriz_rotacion(-30)
+        print(f"Matriz de rotación -30°:\n{R30_neg}")
+
+        # Ejercicio 3: Propiedad R(45) * R(45) = R(90)
+        R45 = self.matriz_rotacion(45)
+        R_resultante = np.dot(R45, R45)
+        print(f"Matriz resultante R(45)*R(45):\n{R_resultante}")
+
+        # --- MATRICES SIMÉTRICAS ---
+        print("\n=== MATRICES SIMÉTRICAS ===")
+        A_sim = np.array([[1, 2, 3], [2, 5, 6], [3, 6, 9]])
+        self.verificar_simetria(A_sim)
+
+        # Completar matriz simétrica (Ejercicio de tu hoja)
+        A_completa = np.array([[2, -1, 4], [-1, 3, 5], [4, 5, 6]])
+        print("Matriz completada (Simétrica):")
+        self.verificar_simetria(A_completa)
+
+        # --- MATRICES ANTISIMÉTRICAS ---
+        print("\n=== MATRICES ANTISIMÉTRICAS ===")
+        A_anti = np.array([[0, 3, -2], [-3, 0, 5], [2, -5, 0]])
+        self.verificar_antisimetria(A_anti)
+
+        # Matriz con X e Y hallados (X=2, Y=6)
+        A_anti_XY = np.array([[0, 2, 4], [-2, 0, 6], [-4, -6, 0]])
+        print("Matriz con X e Y (Antisimétrica):")
+        self.verificar_antisimetria(A_anti_XY)
+
+if __name__ == "__main__":
+    taller = VerificadorTaller3()
+    taller.ejecutar_ejercicios()
