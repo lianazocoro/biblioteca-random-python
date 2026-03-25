@@ -1,0 +1,55 @@
+import numpy as np
+
+class VerificadorTaller5:
+    def __init__(self):
+        # Configuración para mostrar matrices de forma clara
+        np.set_printoptions(precision=2, suppress=True)
+
+    def mostrar_resultado(self, num, prop, det_original, det_nuevo, explicacion):
+        print(f"--- Ejercicio #{num} ({prop}) ---")
+        print(f"Determinante Original: {round(det_original)}")
+        print(f"Determinante Nuevo: {round(det_nuevo)}")
+        print(f"Resultado: {explicacion}\n")
+
+    def ejecutar_taller(self):
+        # Propiedad 1: Intercambio de filas (det cambia de signo)
+        A1 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        A1_nuevo = np.array([[4, 5, 6], [1, 2, 3], [7, 8, 9]])
+        self.mostrar_resultado(1, "Propiedad 1", np.linalg.det(A1), np.linalg.det(A1_nuevo), "det(Anuevo) = -det(A)")
+
+        # Propiedad 2: Filas iguales (det = 0)
+        A3 = np.array([[1, 2, 3], [1, 2, 3], [4, 5, 6]])
+        print(f"--- Ejercicio #3 (Propiedad 2) ---")
+        print(f"Determinante: {round(np.linalg.det(A3))}")
+        print("Resultado: det = 0 porque F1 = F2\n")
+
+        # Propiedad 5: Matriz Triangular (Producto de la diagonal)
+        A9 = np.array([[2, 1, 3], [0, 4, 5], [0, 0, 6]])
+        det_A9 = np.linalg.det(A9)
+        self.mostrar_resultado(9, "Propiedad 5", det_A9, 2*4*6, "det = Producto de la diagonal (48)")
+
+        # Propiedad 6: Filas proporcionales (det = 0)
+        A11 = np.array([[1, 2, 3], [2, 4, 6], [3, 1, 0]])
+        print(f"--- Ejercicio #11 (Propiedad 6) ---")
+        print(f"Determinante: {round(np.linalg.det(A11))}")
+        print("Resultado: det = 0 porque F2 = 2*F1\n")
+
+        # Propiedad 7: Matriz Identidad (det = 1)
+        I = np.eye(3)
+        print(f"--- Ejercicio #13 (Propiedad 7) ---")
+        print(f"Determinante Identidad: {round(np.linalg.det(I))}\n")
+
+        # Propiedad 8: det(A*B) = det(A) * det(B)
+        A15 = np.array([[1, 2, 0], [0, 1, 3], [2, 1, 1]])
+        B15 = np.array([[2, 0, 1], [1, 3, 2], [0, 1, 1]])
+        det_prod = np.linalg.det(np.dot(A15, B15))
+        det_separados = np.linalg.det(A15) * np.linalg.det(B15)
+        self.mostrar_resultado(15, "Propiedad 8", det_prod, det_separados, "det(AB) = det(A) * det(B)")
+
+        # Propiedad 9: det(A) = det(A^T)
+        A17 = np.array([[1, 2, 3], [0, 1, 4], [2, 0, 1]])
+        self.mostrar_resultado(17, "Propiedad 9", np.linalg.det(A17), np.linalg.det(A17.T), "det(A) = det(A transpuesta)")
+
+if __name__ == "__main__":
+    taller = VerificadorTaller5()
+    taller.ejecutar_taller()
