@@ -1,0 +1,32 @@
+import numpy as np
+import random
+
+class VerificadorDeterminantes:
+    def __init__(self):
+        self.random_data = lambda f, c: [[random.randint(-5, 10) for _ in range(c)] for _ in range(f)]
+
+    def calcular_y_mostrar(self, matriz, metodo):
+        print(f"=== Método: {metodo} ===")
+        det = np.linalg.det(matriz)
+        print(f"Matriz:\n{matriz}")
+        print(f"Determinante calculado: {round(det)}\n")
+
+    def ejecutar_taller(self):
+        # EJERCICIO #1: Gauss
+        # Matriz A: [[2, 1, -1], [4, 5, -3], [2, -1, 2]]
+        A = np.array([[2, 1, -1], [4, 5, -3], [2, -1, 2]])
+        self.calcular_y_mostrar(A, "Gauss")
+
+        # EJERCICIO #2: Diagonalización
+        # Matriz B: [[1, 2, 3], [0, 4, 5], [2, 1, 3]]
+        B = np.array([[1, 2, 3], [0, 4, 5], [2, 1, 3]])
+        self.calcular_y_mostrar(B, "Diagonalización")
+
+        # EJERCICIO #3: Cofactores
+        # Matriz C: [[3, 0, 2], [2, -1, 1], [1, 4, 5]]
+        C = np.array([[3, 0, 2], [2, -1, 1], [1, 4, 5]])
+        self.calcular_y_mostrar(C, "Cofactores")
+
+if __name__ == "__main__":
+    verificador = VerificadorDeterminantes()
+    verificador.ejecutar_taller()
