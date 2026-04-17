@@ -1,0 +1,34 @@
+import numpy as np
+
+# Matriz de notas (igual que en el informe)
+# Cada fila = estudiante
+# Cada columna = corte
+A = np.array([
+    [4.0, 3.8, 4.5],
+    [3.5, 4.0, 4.2],
+    [4.2, 4.1, 4.8]
+])
+
+print("Matriz de notas:")
+print(A)
+
+# Calcular promedios por estudiante (promedio por fila)
+promedios = np.mean(A, axis=1)
+
+print("\nPromedios por estudiante:")
+for i, promedio in enumerate(promedios, start=1):
+    print(f"Estudiante {i}: {round(promedio, 2)}")
+
+# Identificar mejor y peor estudiante
+mejor = np.argmax(promedios) + 1
+peor = np.argmin(promedios) + 1
+
+print("\nAnálisis:")
+print(f"El estudiante con mejor rendimiento es el Estudiante {mejor}")
+print(f"El estudiante con menor rendimiento es el Estudiante {peor}")
+
+# Vector de promedios (como en el informe)
+vector_promedios = promedios.reshape(-1, 1)
+
+print("\nVector de promedios:")
+print(vector_promedios)
